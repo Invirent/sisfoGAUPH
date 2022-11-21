@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Nov 20, 2022 at 03:30 PM
+-- Generation Time: Nov 21, 2022 at 05:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -104,7 +104,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2022_11_12_084544_create_missing_item_statuses_table', 2),
 (9, '2022_11_20_124956_create_attendances_table', 3),
 (10, '2022_11_20_125041_create_reservations_table', 3),
-(11, '2022_11_20_125109_create_schedules_table', 3);
+(11, '2022_11_20_125109_create_schedules_table', 3),
+(12, '2022_11_21_154048_create_replacements_table', 4);
 
 -- --------------------------------------------------------
 
@@ -149,6 +150,36 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `replacements`
+--
+
+CREATE TABLE `replacements` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `nama_lengkap` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mata_kuliah` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kelas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prodi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `semester` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tahun_akademik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `jadwal_kuliah` datetime DEFAULT NULL,
+  `tanggal_replacement` date DEFAULT NULL,
+  `jam_replacement` time DEFAULT NULL,
+  `alasan_replacement` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `replacements`
+--
+
+INSERT INTO `replacements` (`id`, `created_at`, `updated_at`, `nama_lengkap`, `mata_kuliah`, `kelas`, `prodi`, `semester`, `tahun_akademik`, `tanggal`, `jadwal_kuliah`, `tanggal_replacement`, `jam_replacement`, `alasan_replacement`) VALUES
+(1, '2022-11-21 08:52:29', '2022-11-21 08:52:29', 'Carlos', 'Business Application Program', '20SI2', 'Sistem Informasi', '5', '2020', '2022-11-01', '2022-11-01 12:00:00', '2022-11-01', '17:30:00', 'Alasan');
 
 -- --------------------------------------------------------
 
@@ -279,6 +310,12 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `replacements`
+--
+ALTER TABLE `replacements`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
@@ -335,7 +372,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `missing_item_statuses`
@@ -348,6 +385,12 @@ ALTER TABLE `missing_item_statuses`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `replacements`
+--
+ALTER TABLE `replacements`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservations`
