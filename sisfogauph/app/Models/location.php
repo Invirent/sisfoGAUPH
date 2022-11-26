@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reservation extends Model
+class location extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'reservations';
+    protected $table = 'locations';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class reservation extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'reservation_code', 'room_id', 'start', 'end', 'description', 'reservation_status'];
+    protected $fillable = ['name'];
 
     
 }

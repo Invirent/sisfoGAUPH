@@ -15,23 +15,23 @@
 </div>
 <div class="form-group {{ $errors->has('start') ? 'has-error' : ''}}">
     <label for="start" class="control-label">{{ 'Start' }}</label>
-    <input class="form-control" name="start" type="date" id="start" value="{{ isset($reservation->start) ? $reservation->start : ''}}" >
+    <input class="form-control" name="start" type="datetime-local" id="start" value="{{ isset($reservation->start) ? $reservation->start : ''}}" >
     {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('end') ? 'has-error' : ''}}">
     <label for="end" class="control-label">{{ 'End' }}</label>
-    <input class="form-control" name="end" type="date" id="end" value="{{ isset($reservation->end) ? $reservation->end : ''}}" >
+    <input class="form-control" name="end" type="datetime-local" id="end" value="{{ isset($reservation->end) ? $reservation->end : ''}}" >
     {!! $errors->first('end', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     <label for="description" class="control-label">{{ 'Description' }}</label>
-    <input class="form-control" name="description" type="text" id="description" value="{{ isset($reservation->description) ? $reservation->description : ''}}" >
+    <textarea class="form-control" rows="5" name="description" type="textarea" id="description" >{{ isset($reservation->description) ? $reservation->description : ''}}</textarea>
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('reservation_status_id') ? 'has-error' : ''}}">
-    <label for="reservation_status_id" class="control-label">{{ 'Reservation Status Id' }}</label>
-    <input class="form-control" name="reservation_status_id" type="number" id="reservation_status_id" value="{{ isset($reservation->reservation_status_id) ? $reservation->reservation_status_id : ''}}" >
-    {!! $errors->first('reservation_status_id', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('reservation_status') ? 'has-error' : ''}}">
+    <label for="reservation_status" class="control-label">{{ 'Reservation Status' }}</label>
+    <input class="form-control" name="reservation_status" type="number" id="reservation_status" value="{{ isset($reservation->reservation_status) ? $reservation->reservation_status : ''}}" >
+    {!! $errors->first('reservation_status', '<p class="help-block">:message</p>') !!}
 </div>
 
 

@@ -1,9 +1,3 @@
-<?php
-    use Illuminate\Support\Facades\DB;
-
-    $reservations = DB::select('select * from reservation_views');
-?>
-
 @extends('layouts.app')
 
 @section('content')
@@ -13,13 +7,13 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Reservation</div>
+                    <div class="card-header">Location</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/reservation/create') }}" class="btn btn-success btn-sm" title="Add New reservation">
+                        <a href="{{ url('/admin/location/create') }}" class="btn btn-success btn-sm" title="Add New location">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/reservation') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <form method="GET" action="{{ url('/admin/location') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -36,28 +30,29 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>User</th><th>Reservation Code</th><th>Room Number</th><th>Actions</th>
+                                        <th>#</th><th>Name</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($reservations as $item)
+                                @foreach($location as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user_name }}</td><td>{{ $item->reserve_code }}</td><td>{{ $item->room_number }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/reservation/' . $item->reserve_id) }}" title="View reservation"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/reservation/' . $item->reserve_id . '/edit') }}" title="Edit reservation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/location/' . $item->id) }}" title="View location"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/admin/location/' . $item->id . '/edit') }}" title="Edit location"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/admin/reservation' . '/' . $item->reserve_id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/admin/location' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete reservation" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete location" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div class="pagination-wrapper"> {!! $location->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>

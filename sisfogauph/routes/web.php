@@ -29,3 +29,7 @@ Route::resource('admin/replacement', 'App\Http\Controllers\Admin\replacementCont
 
 Route::get('/laporan/replacement',[LaporanPrintout::class,'index']);
 Route::get('/laporan/replacement/pdf',[LaporanPrintout::class,'cetak_pdf']);
+Route::resource('admin/location', 'App\Http\Controllers\Admin\locationController');
+Route::resource('admin/room', 'App\Http\Controllers\Admin\roomController');
+Route::resource('admin/reservation', 'App\Http\Controllers\Admin\reservationController');
+Route::resource('admin/reservation', 'App\Http\Controllers\Admin\reservationController');
